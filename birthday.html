@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geleceğin En Güzel Annesine</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    #splash-screen {
+      position: fixed;
+      z-index: 9999;
+      width: 100vw;
+      height: 100vh;
+      background-color: #c8be89;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 1s ease;
+    }
+
+    #splash-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-content img {
+      width: 100%;
+      height: auto;
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 120px;
+      padding-top: 100px;
+      padding-bottom: 200px;
+    }
+
+    .card-container {
+      width: 220px;
+      height: 450px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .front {
+      background-color: #e26464;
+      color: #edb1b7;
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+
+    .card-image {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      object-fit: cover;
+    }
+
+    .back {
+      background-color: #e35b84;
+      color: #e0f7fa;
+      transform: rotateY(180deg);
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <img src="papatya.png" alt="Logo" />
+    </div>
+  </div>
+
+  <!-- Arka Plan Videosu -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="bg_video.mp4" type="video/mp4" />
+    Tarayıcınız video etiketini desteklemiyor.
+  </video>
+
+  <!-- Arka Plan Müziği -->
+  <audio id="bg-music" src="ytmp3free.cc_duman-helal-olsun-backing-track-karaoke-youtubemp3free.org-[AudioTrimmer.com].mp3" loop></audio>
+
+  <!-- Kartlar -->
+  <div class="container" id="main-content">
+    <div class="card-container" id="card1-container">
+      <div class="card" id="card1">
+        <div class="front">
+          <img src="foto_1.png" alt="Kart 1 Görseli" class="card-image" />
+          Mayıs ayının güzel olma sebebisin.
+        </div>
+        <div class="back">Gülümse o güzel gözlerinle gelişinle renk buldu bu siyah beyaz dünya. Seninle bir anlam kazandı günler.Yeni yaşında daha mutlu olmak senin hakkın ve mutlu da olucaksın,sen hep bu dünyaya umutla bak iyi ki doğdun bal.</div>
+      </div>
+    </div>
+    <audio id="music1" src="ezhel.mp3"></audio>
+
+    <div class="card-container" id="card2-container">
+      <div class="card" id="card2">
+        <div class="front">
+          <img src="foto_2.png" alt="Kart 2 Görseli" class="card-image" />
+          Sen varsın ya kıyamet kopsa güneş tersinden doğsa umrumda olmaz,
+          Canım o gözlere fedadır en temiz duygularla sadece.
+        </div>
+        <div class="back">Bu Kart 2'nin Arka Yüzü</div>
+      </div>
+    </div>
+    <audio id="music2" src="goksel.mp3"></audio>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const splash = document.getElementById('splash-screen');
+    const bgMusic = document.getElementById('bg-music');
+    const music1 = document.getElementById('music1');
+    const music2 = document.getElementById('music2');
+
+    // Splash ekranı sonra müziği başlat
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        splash.classList.add('fade-out');
+        // Arka plan müziğini başlat
+        bgMusic.play().catch(e => {
+          console.log("BG müzik başlatılamadı:", e);
+        });
+      }, 2500);
+    });
+
+    // Diğer müzikleri ve arka plan müziğini durdur
+    function stopAllMusic(except) {
+      [music1, music2, bgMusic].forEach(music => {
+        if (music !== except) {
+          music.pause();
+          music.currentTime = 0;
+        }
+      });
+    }
+
+    // Kartları ayarla
+    function setupCard(cardId, containerId, music) {
+      const card = document.getElementById(cardId);
+      const container = document.getElementById(containerId);
+
+      container.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+        stopAllMusic(music);
+
+        if (music.paused) {
+          music.currentTime = 0;
+          music.play().catch(e => {
+            console.log(`${cardId} müzik hatası:`, e);
+          });
+        }
+      });
+    }
+
+    setupCard('card1', 'card1-container', music1);
+    setupCard('card2', 'card2-container', music2);
+  </script>
+</body>
+</html>
