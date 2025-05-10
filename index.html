@@ -140,6 +140,7 @@
 
   <!-- Kartlar -->
   <div class="container" id="main-content">
+    <!-- Kart 1 -->
     <div class="card-container" id="card1-container">
       <div class="card" id="card1">
         <div class="front">
@@ -151,6 +152,7 @@
     </div>
     <audio id="music1" src="ezhel.mp3"></audio>
 
+    <!-- Kart 2 -->
     <div class="card-container" id="card2-container">
       <div class="card" id="card2">
         <div class="front">
@@ -162,6 +164,78 @@
       </div>
     </div>
     <audio id="music2" src="goksel.mp3"></audio>
+
+    <!-- Kart 3 -->
+    <div class="card-container" id="card3-container">
+      <div class="card" id="card3">
+        <div class="front">
+          <img src="foto_3.png" alt="Kart 3 Görseli" class="card-image" />
+          Her anın bir ömre bedel.
+        </div>
+        <div class="back">Sonsuz bir sevgiyle dolu her anı paylaştık. İyi ki sen varsın, iyi ki birlikteyiz.</div>
+      </div>
+    </div>
+    <audio id="music3" src="song3.mp3"></audio>
+
+    <!-- Kart 4 -->
+    <div class="card-container" id="card4-container">
+      <div class="card" id="card4">
+        <div class="front">
+          <img src="foto_4.png" alt="Kart 4 Görseli" class="card-image" />
+          Birlikte daha nice yıllara.
+        </div>
+        <div class="back">Sonsuz mutluluk, gülen yüzler, güzel anlar... Birlikte olduğumuz her anı değerli kıldın.</div>
+      </div>
+    </div>
+    <audio id="music4" src="song4.mp3"></audio>
+
+    <!-- Kart 5 -->
+    <div class="card-container" id="card5-container">
+      <div class="card" id="card5">
+        <div class="front">
+          <img src="foto_5.png" alt="Kart 5 Görseli" class="card-image" />
+          Gözlerindeki pırıltı dünyamı aydınlatıyor.
+        </div>
+        <div class="back">Her an seninle olmak, senin yanında olmak dünyanın en güzel hissi. Hep gülümse!</div>
+      </div>
+    </div>
+    <audio id="music5" src="song5.mp3"></audio>
+
+    <!-- Kart 6 -->
+    <div class="card-container" id="card6-container">
+      <div class="card" id="card6">
+        <div class="front">
+          <img src="foto_6.png" alt="Kart 6 Görseli" class="card-image" />
+          Seninle her şey daha güzel.
+        </div>
+        <div class="back">Gözlerindeki ışık, tüm karanlıkları aydınlatıyor. Seninle yaşamak, her anı değerli kılıyor.</div>
+      </div>
+    </div>
+    <audio id="music6" src="song6.mp3"></audio>
+
+    <!-- Kart 7 -->
+    <div class="card-container" id="card7-container">
+      <div class="card" id="card7">
+        <div class="front">
+          <img src="foto_7.png" alt="Kart 7 Görseli" class="card-image" />
+          Hep birlikte daha güzel bir dünya.
+        </div>
+        <div class="back">Birlikte yaşadığımız her an bir ömre bedel, hep gülümse ve birlikte olalım.</div>
+      </div>
+    </div>
+    <audio id="music7" src="song7.mp3"></audio>
+
+    <!-- Kart 8 -->
+    <div class="card-container" id="card8-container">
+      <div class="card" id="card8">
+        <div class="front">
+          <img src="foto_8.png" alt="Kart 8 Görseli" class="card-image" />
+          En değerli anılar seninle.
+        </div>
+        <div class="back">Güzel anılar biriktirdik, hep birlikte olmaya devam edeceğiz. İyi ki varsın!</div>
+      </div>
+    </div>
+    <audio id="music8" src="song8.mp3"></audio>
   </div>
 
   <!-- JS -->
@@ -170,6 +244,12 @@
     const bgMusic = document.getElementById('bg-music');
     const music1 = document.getElementById('music1');
     const music2 = document.getElementById('music2');
+    const music3 = document.getElementById('music3');
+    const music4 = document.getElementById('music4');
+    const music5 = document.getElementById('music5');
+    const music6 = document.getElementById('music6');
+    const music7 = document.getElementById('music7');
+    const music8 = document.getElementById('music8');
 
     // Splash ekranı sonra müziği başlat
     window.addEventListener('load', () => {
@@ -184,7 +264,7 @@
 
     // Diğer müzikleri ve arka plan müziğini durdur
     function stopAllMusic(except) {
-      [music1, music2, bgMusic].forEach(music => {
+      [music1, music2, music3, music4, music5, music6, music7, music8, bgMusic].forEach(music => {
         if (music !== except) {
           music.pause();
           music.currentTime = 0;
@@ -212,6 +292,12 @@
 
     setupCard('card1', 'card1-container', music1);
     setupCard('card2', 'card2-container', music2);
+    setupCard('card3', 'card3-container', music3);
+    setupCard('card4', 'card4-container', music4);
+    setupCard('card5', 'card5-container', music5);
+    setupCard('card6', 'card6-container', music6);
+    setupCard('card7', 'card7-container', music7);
+    setupCard('card8', 'card8-container', music8);
   </script>
 </body>
 </html>
